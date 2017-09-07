@@ -1,0 +1,187 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-xs-12">
+           <ul class="breadcrumb">
+               <li><a href="#/">Home</a></li>
+               <li><a href="#/myproducts/0">MyProducts</a></li>
+               <li class="active">Product</li>
+           </ul>
+        </div>
+        <div class="col-xs-12">
+           <h3>MyProduct</h3>
+           <hr>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-3">
+            <div class="row row-content">
+                <div class="col-xs-12">
+                    <!-- <div ng-if="!myproduct.showProd">
+                        <h3>{{myproduct.msgProd}}</h3>
+                    </div> -->
+                    <div ng-if="myproduct.showProd">
+                        <img class="media-object img-thumbnail" ng-src={{myproduct.product.image}} alt={{myproduct.product.name}} height="180" width="180">
+                        <h3>{{myproduct.product.name}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-9">
+            <div class="row row-content">
+                <div class="col-xs-12">
+
+                    <div ng-if="!myproduct.showProd">
+                        <h3>{{myproduct.msgProd}}</h3>
+                    </div>
+                    <div ng-if="myproduct.showProd">
+                        <button ng-click="myproduct.removeFromMyProducts(myproduct.myproducts._id, myproduct.product._id)" class="btn btn-xs btn-default pull-right" type="button">
+                            <i class="fa fa-minus"></i> Remove from MyProducts
+                        </button>
+
+                        <div role="tabpanel">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" ng-class="{active:myproduct.isSelected('details')}">
+                                    <a aria-controls="details" role="tab" ng-click="myproduct.select('details')">Details</a>
+                                </li>
+                                <li role="presentation" ng-class="{active:myproduct.isSelected('alerts')}">
+                                    <a aria-controls="alerts" role="tab" ng-click="myproduct.select('alerts')">Alerts</a>
+                                </li>
+                                <li role="presentation" ng-class="{active:myproduct.isSelected('reviews')}">
+                                    <a aria-controls="reviews" role="tab" ng-click="myproduct.select('reviews')">Reviews</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane" ng-class="{active:myproduct.isSelected('details')}">
+                                    <h4>{{myproduct.product.slogan}}</h4>
+                                    <p ng-bind-html="myproduct.product.description | nl2br"></p>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" ng-class="{active:myproduct.isSelected('alerts')}">
+                                    <h4>Manufacturer Alerts ({{myproduct.product.alerts.length}})</h4>
+                                    <ul class="list-unstyled">
+                                        <li ng-repeat="alert in myproduct.product.alerts">
+                                          <blockquote>
+                                             <h4>{{alert.headline}}</h4>
+                                             <br/>
+                                             <h5><p ng-bind-html="alert.alert | nl2br"></p></h5>
+                                             <footer>{{alert.updatedAt | date:'MMM. dd, yyyy'}}</footer>
+                                          </blockquote>
+                                        </li>
+                                    </ul>  
+                                </div>
+                                <div role="tabpanel" class="tab-pane" ng-class="{active:myproduct.isSelected('reviews')}">
+                                    <h4>User Reviews ({{myproduct.product.reviews.length}})</h4> <br />
+
+                                    <div ng-if="myproduct.product.reviews.length > 0">    
+                                        <!-- <ul class="list-unstyled">
+                                            <li ng-repeat="review in myproduct.product.reviews">
+                                              <blockquote>
+                                                 <h3>{{review.headline}} - {{review.rating}} Stars</h3>
+                                                 <p>{{review.review}}</p>
+                                                 <footer>{{review.postedBy.firstname}} {{review.postedBy.lastname}}, {{review.updatedAt | date:'MMM. dd, yyyy'}}</footer>
+                                              </blockquote>
+                                            </li>
+                                        </ul> -->
+
+                                        <!-- <h4>User Reviews &nbsp;&nbsp;&nbsp;
+                                           <small>Sort by: &nbsp; <input type="text" ng-model="orderText" ></small>
+                                        </h4> -->
+                                    </div>
+
+                                    <ul class="list-unstyled">
+                                        <li ng-repeat="review in myproduct.product.reviews | orderBy:orderText">
+                                          <blockquote>
+                                             <p>{{review.headline}} - {{review.rating}} Stars</p>
+                                             <p><h5>{{review.review}}</h5></p>
+                                             <footer>{{review.postedBy.firstname}} {{review.postedBy.lastname}}, {{review.updatedAt | date:'MMM. dd, yyyy'}}</footer>
+                                          </blockquote>
+                                        </li>
+                                    </ul>
+
+                                    <ul class="list-unstyled" ng-show="form.reviewForm.$valid && !form.reviewForm.$pristine">
+                                        <li>
+                                          <blockquote>
+                                             <p class="commenting">{{myproduct.myreview.headline}} - {{myproduct.myreview.rating}} Stars</p>
+                                             <p><h5 class="commenting">{{myproduct.myreview.review}}</h5></p>
+                                          </blockquote>
+                                        </li>
+                                    </ul>
+
+                                    <form class="form-horizontal" name="form.reviewForm" ng-submit="myproduct.submitReview()" novalidate>
+                                        <div class="form-group" ng-class="{ 'has-error' : form.reviewForm.headline.$error.required && !form.reviewForm.headline.$pristine }">
+                                            <label for="headline" class="col-sm-2 control-label">Headline</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" name="headline" ng-model="myproduct.myreview.headline" id="headline" placeholder="Enter Headline" required>
+                                                <span ng-show="form.reviewForm.headline.$error.required && !form.reviewForm.headline.$pristine" class="help-block">Headline is required.</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                           <label for="numStarts" class="col-sm-2 control-label">
+                                            Number of Stars</label>
+                                            <div class="col-sm-10">
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="rating" ng-model="myproduct.myreview.rating" id="rating1" value=1> 1
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="rating" ng-model="myproduct.myreview.rating" id="rating2" value=2> 2
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="rating" ng-model="myproduct.myreview.rating" id="rating3" value=3> 3
+                                                </label>
+                                                 <label class="radio-inline">
+                                                    <input type="radio" name="rating" ng-model="myproduct.myreview.rating" id="rating4" value=4> 4
+                                                </label>
+                                                 <label class="radio-inline">
+                                                    <input type="radio" name="rating" ng-model="myproduct.myreview.rating" id="rating5" value=5 checked> 5
+                                                </label>
+                                            </div>
+                                        </div>                    
+                                        <div class="form-group"  ng-class="{ 'has-error' : form.reviewForm.review.$error.required && !form.reviewForm.review.$pristine }">
+                                            <label for="review" class="col-sm-2 control-label">Your Review</label>
+                                            <div class="col-sm-10">
+                                                <textarea class="form-control" rows="12" name="review"
+                                                    ng-model="myproduct.myreview.review" required>
+                                                </textarea>
+                                                <span ng-show="form.reviewForm.review.$error.required && !form.reviewForm.review.$pristine" class="help-block">Your review is required.</span>
+                                           </div>
+                                        </div> 
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button type="submit" class="btn btn-primary" ng-disabled="form.reviewForm.$invalid">Submit Review</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div role="tabpanel">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" ng-class="{active:myproduct.isSelected('details')}">
+                                    <a aria-controls="details" role="tab" ng-click="myproduct.select('details')">Details</a>
+                                </li>
+                                <li role="presentation" ng-class="{active:myproduct.isSelected('reviews')}">
+                                    <a aria-controls="alerts" role="tab" ng-click="myproduct.select('reviews')">Alerts</a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane" ng-class="{active:myproduct.isSelected('details')}">{{myproduct.product.description}}</div>
+                                <div role="tabpanel" class="tab-pane" ng-class="{active:myproduct.isSelected('reviews')}">
+                                   <form class="form-horizontal" name="form.reviewForm" ng-submit="myproduct.submitReviewTest()" novalidate>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button type="submit" class="btn btn-primary">Submit Review</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

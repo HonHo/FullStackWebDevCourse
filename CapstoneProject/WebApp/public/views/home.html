@@ -1,0 +1,76 @@
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+               <ul class="breadcrumb">
+                   <li class="active">Home</li>
+               </ul>
+            </div>
+        </div>
+
+        <div class="row row-content">
+
+                <!-- <div class="col-sm-6 col-sm-offset-3">
+                            <div class="input-group col-md-12">
+                                <input type="text" class="search-query form-control" placeholder="Search" ng-model="searchManufact" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-info" type="button" ng-click="home.findValue(searchManufact)">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                            </div>
+                </div> -->
+
+                <!-- <div class="row">
+                    <form id="custom-search-form" class="form-search form-horizontal">
+                        <div class="input-append">
+                            <input type="text" class="search-query" placeholder="Search">
+                            <button type="submit" class="btn"><span class="glyphicon glyphicon-search"></button>
+                        </div>
+                    </form>
+                </div> -->
+
+            <div class="col-sm-4 col-sm-offset-8">
+                <div class="input-group col-md-12">
+                    <input type="text" class="search-query form-control" placeholder="Serach Manufacturer" ng-model="filterManufact" />
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-9">
+                <div ng-if="!home.showManufacts">
+                    <h3>{{home.message}}</h3>
+                </div>
+                <div ng-if="home.showManufacts">
+                    <!-- div class="media-left media-middle">
+                        <a href="#">
+                            <img class="media-object img-thumbnail" 
+                            ng-src={{home.dish.image}} alt="Uthappizza">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h2 class="media-heading">{{home.dish.name}} 
+                        <span class="label label-danger">{{home.dish.label}}</span> 
+                        <span class="badge">{{home.dish.price/100 | currency}}</span></h2>
+                        <p>{{home.dish.description}}</p>
+                    </div -->
+
+                    <ul class="media-list">
+                        <li class="media" ng-repeat="manufact in home.manufacts | filter:home.findManufact(filterManufact)">
+                            <div class="media-left media-middle">
+                                <a ui-sref="app.manufact({id: manufact._id})">
+                                    <img class="media-object img-thumbnail"
+                                        ng-src={{manufact.image}} alt={{manufact.name}} height="120" width="120">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="media-heading">
+                                    <a ui-sref="app.manufact({id: manufact._id})">{{manufact.name}}</a>
+                                    <!-- small>{{manufact.name}}</small -->
+                                </h3>
+                                <p>{{manufact.description}}</p>
+                            </div>
+                        </li>
+                    </ul>                    
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,100 @@
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+               <ul class="breadcrumb">
+                   <li><a href="#/">Home</a></li>
+                   <li class="active">MyProducts</li>
+               </ul>
+            </div>
+            <div class="col-xs-12">
+               <h3>MyProducts</h3>
+               <hr>
+            </div>
+        </div>
+        <div class="row row-content">
+
+                <div class="col-sm-4 col-sm-offset-8">
+                    <div class="input-group col-md-12">
+                        <input type="text" class="search-query form-control" placeholder="Serach Product" ng-model="searchProduct" />
+                    </div>
+                </div>
+
+            <div class="col-xs-12">
+                <div ng-if="!myproducts.showProds">
+                    <h3>{{myproducts.msgProds}}</h3>
+                </div>
+                <div ng-if="myproducts.showProds">
+
+                    <!-- <h3>{{myproducts.products[0].name}}</h3>
+
+                    <ul class="media-list">
+                        <li class="media" ng-repeat="product in myproducts.products">
+                            <div class="media-left media-middle">
+                                <a ui-sref="app.product({manufactId: myproducts.myproduct.id, id: product.id})">
+                                    <img class="media-object img-thumbnail"
+                                        ng-src={{product.image}} alt={{product.name}}>
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="media-heading">{{product.name}}
+                                    <small>{{product.name}}</small>
+                                </h3>
+                                <p>{{product.description}}</p>
+                            </div>
+                        </li>
+                    </ul> -->                    
+                </div>
+
+                <div>
+                    <div ng-repeat="prodPerManufact in myproducts.productsToFilter() | filter: myproducts.filterManufacts">
+                        <h2>{{prodPerManufact.producedBy.name}}</h2>
+                        <ul class="media-list">
+                            <li class="media" ng-repeat="product in myproducts.products | filter: {producedBy: prodPerManufact.producedBy} | filter: myproducts.productsToShow(searchProduct)">
+                                <div class="media-left media-middle">
+                                    <a ui-sref="app.myproduct({id: myproducts.myproducts._id, prodId: product._id})">
+                                        <img class="media-object img-thumbnail"
+                                            ng-src={{product.image}} alt={{product.name}} height="120" width="120">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h3 class="media-heading">
+                                        <a ui-sref="app.myproduct({id: myproducts.myproducts._id, prodId: product._id})">{{product.name}}</a>
+                                    </h3>
+                                    <h4>{{product.slogan}}</h4>
+                                    <button ng-click="myproducts.removeFromMyProducts(myproducts.myproducts._id, product._id)" class="btn btn-xs btn-default pull-right" type="button">
+                                        <i class="fa fa-minus"></i> Remove from MyProducts
+                                    </button>
+                                </div>
+                            </li>
+                        </ul>    
+                    </div>
+                </div>
+
+                <!-- <div>
+                    <div ng-repeat="playerPerTeam in myproducts.playersToFilter() | filter:myproducts.filterTeams">
+                        <b>{{playerPerTeam.team}}</b>
+                        <li ng-repeat="player in myproduct.players | filter:{team: playerPerTeam.team}">{{player.name}}</li>        
+                    </div>
+                </div> -->
+
+<!--                 <h3>{{manufact.products[0].producedBy.name}}</h3>
+
+                    <ul class="media-list">
+                        <li class="media" ng-repeat="product in manufact.products">
+                            <div class="media-left media-middle">
+                                <a ui-sref="app.product({manufactId: product.producedBy._id, id: product._id})">
+                                    <img class="media-object img-thumbnail"
+                                        ng-src={{product.image}} alt={{product.name}}>
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="media-heading">{{product.name}}
+                                    <small>{{product.name}}</small>
+                                </h3>
+                                <p>{{product.description}}</p>
+                            </div>
+                        </li>
+                    </ul>  -->
+            </div>
+        </div>
+    </div>

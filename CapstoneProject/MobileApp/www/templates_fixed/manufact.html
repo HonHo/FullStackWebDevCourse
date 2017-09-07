@@ -1,0 +1,15 @@
+<ion-view view-title="manufact">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="product in products | filter:findProduct(filterProduct)" href="#/app/manufacts/{{product.producedBy._id}}/products/{{product._id}}" class="item-thumbnail-left">
+        <img ng-src="{{baseURL+product.image}}">
+        <h2>{{product.name}} 
+        <p>{{product.description}}</p>
+        <p>{{product.producedBy._id}}</p>
+        <p>{{product._id}}</p>
+        <ion-option-button class="button-assertive icon ion-plus-circled" ng-click="addToMyProducts(0, product._id)">
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

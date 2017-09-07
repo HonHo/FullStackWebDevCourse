@@ -1,0 +1,63 @@
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" ui-sref="app">
+                    <img src="images/logo1.png" height="32" width="32"/>
+                </a>
+
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li ng-class="{active: header.stateis('app') || header.stateis('app.manufact') || header.stateis('app.product')}"><a ui-sref="app">
+                        <span class="glyphicon glyphicon-home"
+                         aria-hidden="true"></span> Home</a></li>
+                    <li ng-class="{active: header.stateis('app.myproducts') || header.stateis('app.myproduct')}"><a ui-sref="app.myproducts({id:'0'})">
+                         <span class="glyphicon glyphicon-list-alt"
+                         aria-hidden="true"></span> MyProducts</a></li>
+                    <li ng-class="{active: header.stateis('app.aboutus')}"><a ui-sref="app.aboutus">
+                        <span class="glyphicon glyphicon-info-sign"
+                         aria-hidden="true"></span> About</a></li>
+                    <li ng-class="{active: header.stateis('app.contactus')}"><a ui-sref="app.contactus">
+                     <i class="fa fa-envelope-o"></i> Contact</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li ng-if="!header.loggedIn">
+                        <a ng-click="header.openLogin()">
+                            <span class="glyphicon glyphicon-log-in"></span> Login</a>
+                    </li>
+                    <li ng-if="header.loggedIn">
+                        <a>{{header.username}}</a>
+                    </li>
+                    <li ng-if="header.loggedIn">
+                        <a ng-click="header.logOut()">
+                            <span class="glyphicon glyphicon-log-in"></span> Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>         
+               
+    <header class="jumbotron">
+        <!-- Main component for a primary marketing message or call to action -->
+        <div class="container">
+            <div class="row row-header">
+                <div class="col-xs-12 col-sm-8">
+                    <h1>CustomerFirst - Portal of Your Home Products</h1>
+                    <!-- p style="padding:40px;"></p -->
+                    <p class="jumbo">A single portal that provides the latest news of your home products!</p>
+                </div>
+                <div class="col-xs-12 col-sm-2">
+                    <!-- <p style="padding:10px;"></p> -->
+                    <img src="images/logo2.png" class="img-responsive">
+                </div>
+                <div class="col-xs-12 col-sm-2">
+                </div>
+            </div>
+        </div>
+    </header>

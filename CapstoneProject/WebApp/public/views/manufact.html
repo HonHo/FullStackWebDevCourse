@@ -1,0 +1,58 @@
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+               <ul class="breadcrumb">
+                   <li><a href="#/">Home</a></li>
+                   <li class="active">Manufacturer</li>
+               </ul>
+            </div>
+            <div class="col-xs-12">
+               <h3>Manufacturer</h3>
+               <hr>
+            </div>
+        </div>
+
+        <div class="row row-content">
+
+                <div class="col-sm-4 col-sm-offset-8">
+                    <div class="input-group col-md-12">
+                        <input type="text" class="search-query form-control" placeholder="Serach Product" ng-model="filterProduct" />
+                    </div>
+                </div>
+
+            <div class="col-xs-12">
+                <div ng-if="!manufact.showProds">
+                    <h3>{{manufact.message}}</h3>
+                </div>
+                <div ng-if="manufact.showProds">
+
+                    <h3>{{manufact.products[0].producedBy.name}}</h3>
+
+                    <ul class="media-list">
+                        <li class="media" ng-repeat="product in manufact.products | filter:manufact.findProduct(filterProduct)">
+                            <div class="media-left media-middle">
+                                <a ui-sref="app.product({manufactId: product.producedBy._id, id: product._id})">
+                                    <img class="media-object img-thumbnail"
+                                        ng-src={{product.image}} alt={{product.name}} height="120" width="120">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="media-heading">
+                                    <a ui-sref="app.product({manufactId: product.producedBy._id, id: product._id})">
+                                        {{product.name}}
+                                    </a>
+                                </h3>
+                                <h4>{{product.slogan}}</h4>
+                                <button ng-click="manufact.addToMyProducts(0, product._id)" class="btn btn-xs btn-default pull-right" type="button">
+                                    <i class="fa fa-plus"></i> Add to MyProducts
+                                </button>
+                            </div>
+                        </li>
+                    </ul>                    
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>

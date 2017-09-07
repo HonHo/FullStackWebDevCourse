@@ -1,0 +1,51 @@
+<ion-view view-title="MyProducts">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="prodPerManufact in productsToFilter() | filter: filterManufacts">
+                        <h2>{{prodPerManufact.producedBy.name}}</h2>
+
+                        <ion-list>
+                            <ion-item ng-repeat="product in products | filter: {producedBy: prodPerManufact.producedBy} | filter: productsToShow(searchProduct)" href="#/app/myproducts/{{myproducts._id}}/products/{{product._id}}" class="item-thumbnail-left">
+
+
+                                <!-- <div class="media-left media-middle">
+                                    <a ui-sref="app.myproduct({id: myproducts._id, prodId: product._id})">
+                                        <img class="media-object img-thumbnail"
+                                            ng-src={{product.image}} alt={{product.name}} height="120" width="120">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h3 class="media-heading">
+                                        <a ui-sref="app.myproduct({id: myproducts._id, prodId: product._id})">{{product.name}}</a>
+                                    </h3>
+                                    <p>{{product.description}}</p> -->
+
+                                    <!-- <button ng-click="removeFromMyProducts(myproducts._id, product._id)" class="btn btn-xs btn-default pull-right" type="button">
+                                        <i class="fa fa-minus"></i> Remove from MyProducts
+                                    </button> -->
+                                <!-- </div> -->
+
+                                <img ng-src="{{baseURL+product.image}}">
+                                    <h2>{{product.name}} 
+                                    <p>{{product.description}}</p>
+                                    <p>{{product.producedBy._id}}</p>
+                                    <p>{{product._id}}</p>
+                                <ion-option-button class="button-assertive icon ion-minus-circled" ng-click="removeFromMyProducts(myproducts._id, product._id)">
+                                </ion-option-button>
+                            </ion-item>
+
+                                  <!-- ion-item ng-repeat="product in manufact.products | filter:manufact.findProduct(filterProduct)" href="#/app/manufacts/{{product.producedBy._id}}/products/{{product._id}}" class="item-thumbnail-left">
+                                    <img ng-src="{{baseURL+product.image}}">
+                                    <h2>{{product.name}} 
+                                    <p>{{product.description}}</p>
+                                    <p>{{product.producedBy._id}}</p>
+                                    <p>{{product._id}}</p>
+                                  </ion-item -->
+
+
+                        <ion-list> 
+
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

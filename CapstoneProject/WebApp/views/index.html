@@ -1,0 +1,69 @@
+<!doctype html>
+<html ng-app="customerFirst">
+  <head>
+    <meta charset="utf-8">
+    <title>CustomerFirst</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+    <link rel="stylesheet" href="javascripts/vendor/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="javascripts/vendor/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="javascripts/vendor/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="javascripts/vendor/ng-dialog/css/ngDialog-theme-plain.min.css">
+    <link rel="stylesheet" href="javascripts/vendor/ng-dialog/css/ngDialog.min.css">
+    <link rel="stylesheet" href="javascripts/vendor/ng-dialog/css/ngDialog-theme-plain.min.css">
+    <link rel="stylesheet" href="javascripts/vendor/ng-dialog/css/ngDialog-theme-default.min.css">
+    <link rel="stylesheet" href="stylesheets/bootstrap-social.css">
+    <link rel="stylesheet" href="stylesheets/mystyles.css">
+
+    <!-- bower:css -->
+    <!-- run `gulp inject` to automatically populate bower styles dependencies -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css({.tmp/serve,src}) styles/app.css -->
+    <!-- inject:css -->
+    <!-- css files will be automatically insert here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+  </head>
+  <body>
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div ui-view="header"></div>
+    <div ui-view="content"></div>
+    <div ui-view="footer"></div>
+
+    <!-- build:js(src) scripts/vendor.js -->
+    <script src="javascripts/vendor/angular/angular.min.js"></script>
+    <script src="javascripts/vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="javascripts/vendor/angular-resource/angular-resource.min.js"></script>
+    <script src="javascripts/vendor/ng-dialog/js/ngDialog.min.js"></script>
+    <script src="javascripts/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="javascripts/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="javascripts/vendor/angular-nl2br-filter/index.js"></script>
+    <script src="javascripts/controllers/app.js"></script>
+    <script src="javascripts/controllers/controllers.js"></script>
+    <script src="javascripts/controllers/services.js"></script>
+
+    <!-- bower:js -->
+    <!-- run `gulp inject` to automatically populate bower script dependencies -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
+    <!-- inject:js -->
+    <!-- js files will be automatically insert here -->
+    <!-- endinject -->
+
+    <!-- inject:partials -->
+    <!-- angular templates will be automatically converted in js and inserted here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+
+  </body>
+</html>

@@ -1,0 +1,135 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-xs-12">
+           <ul class="breadcrumb">
+               <li><a href="#/">Home</a></li>
+               <li><a href="#/manufacts">Manufacturer</a></li>
+               <li class="active">Product</li>
+           </ul>
+        </div>
+        <div class="col-xs-12">
+           <h3>Product</h3>
+           <hr>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-3">
+            <div class="row row-content">
+                <div class="col-xs-12">
+                    <div ng-if="!product.showProd">
+                        <h3>{{product.msgProd}}</h3>
+                    </div>
+                    <div ng-if="product.showProd">
+                        <img class="media-object img-thumbnail" ng-src={{product.product.image}} alt={{product.product.name}} height="180" width="180">
+                        <h3>{{product.product.name}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-9">
+            <div class="row row-content">
+                <div class="col-xs-12">
+
+                    <div ng-if="!product.showProd">
+                        <h3>{{product.msgProd}}</h3>
+                    </div>
+                    <div ng-if="product.showProd">
+                        <button ng-click="product.addToMyProducts(0, product.product._id)" class="btn btn-xs btn-default pull-right" type="button"><i class="fa fa-plus"></i> Add to MyProducts 
+                        </button>
+
+                        <!-- Below also works -->
+                        <!-- <section class="tabbable" ng-init="tab = 1">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a data-target="#tab1" ng-click="tab = 1" data-toggle="tab">Product Details</a>
+                                </li>
+                                <li role="presentation">
+                                    <a data-target="#tab2" ng-click="tab = 2" data-toggle="tab">Alerts</a>
+                                </li>
+                                <li role="presentation">
+                                    <a data-target="#tab3" ng-click="tab = 3" data-toggle="tab">Reviews</a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content">
+                                <div class="tab-pane active" ng-show="tab === 1" id="tab1">
+                                    <h4>Description</h4>
+                                    <p>prod desc</p>
+                                </div>
+                                <div class="tab-pane" ng-show="tab === 2" id="tab2">
+                                    <h4>Specifications</h4>
+                                    <blockquote>None yet 1.</blockquote>
+                                </div>
+                                <div class="tab-pane" ng-show="tab === 3" id="tab3">
+                                    <h4>Specifications</h4>
+                                    <blockquote>None yet 2.</blockquote>                                                      
+                                </div>
+                            </div>
+                        </section> -->
+
+
+                        <div role="tabpanel">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a data-target="#details" aria-controls="details" role="tab" data-toggle="tab">Details</a></li>
+                                <li role="presentation"><a data-target="#alerts" aria-controls="alerts" role="tab" data-toggle="tab">Alerts</a></li>
+                                <li role="presentation"><a data-target="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Reviews</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="details">
+                                    <h4>{{product.product.slogan}}</h4>
+                                    <p ng-bind-html="product.product.description | nl2br"></p>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="alerts">
+                                    <h4>Manufacturer Alerts ({{product.product.alerts.length}})</h4>
+                                    <ul class="list-unstyled">
+                                        <li ng-repeat="alert in product.product.alerts">
+                                          <blockquote>
+                                             <h4>{{alert.headline}}</h4>
+                                             <br/>
+                                             <h5><p ng-bind-html="alert.alert | nl2br"></p></h5>
+                                             <footer>{{alert.updatedAt | date:'MMM. dd, yyyy'}}</footer>
+                                          </blockquote>
+                                        </li>
+                                    </ul>   
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="reviews">
+                                    <h4>User Reviews ({{product.product.reviews.length}})</h4>
+                                    <ul class="list-unstyled">
+                                        <li ng-repeat="review in product.product.reviews">
+                                          <blockquote>
+                                             <p>{{review.headline}} - {{review.rating}} Stars</p>
+                                             <p><h5>{{review.review}}</h5></p>
+                                             <footer>{{review.postedBy.firstname}} {{review.postedBy.lastname}}, {{review.updatedAt | date:'MMM. dd, yyyy'}}</footer>
+                                          </blockquote>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- <div ng-if="!product.showAlerts">
+                        <h3>{{product.msgAlerts}}</h3>
+                    </div>
+                    <div ng-if="product.showAlerts"> -->
+
+
+
+                    <!-- <div ng-if="!product.showReviews">
+                        <h3>{{product.msgReviews}}</h3>
+                    </div>
+                    <div ng-if="product.showReviews"> -->
+
+ 
+                    
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

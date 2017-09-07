@@ -1,0 +1,64 @@
+<ion-view cache-view="false" view-title="MyProduct">
+
+		<ion-nav-buttons side="secondary">
+	      <div class="buttons">
+	        <button class="button button-icon icon ion-more"
+	          ng-click="myproduct.openPopover($event)"></button>
+	      </div>
+	    </ion-nav-buttons>
+	    
+		<!-- <ion-content>
+			<ion-item href="#/app/manufacts/{{myproduct.product.producedBy._id}}/products/{{myproduct.product._id}}" class="item-thumbnail-left">
+				<img ng-src="{{baseURL+myproduct.product.image}}">
+				<h2>{{myproduct.product.name}} 
+				<p>{{myproduct.product.description}}</p>
+				<p>{{myproduct.product.producedBy._i}}</p>
+				<p>{{myproduct.product._id}}</p>
+			</ion-item>
+ 	    </ion-content> -->
+		<ion-tabs class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
+			<ion-tab title="Details">
+					<ion-view>
+						<ion-content>
+							<h4>{{myproduct.product.name}}</h4>
+							<pre>{{myproduct.product.description}}</pre>
+						</ion-content>
+					</ion-view>
+			</ion-tab>
+
+			<ion-tab title="Alerts">
+					<ion-view>
+						<ion-content>
+                            <h4>Total alerts: {{myproduct.product.alerts.length}}</h4>
+                            <ul class="list-unstyled">
+                                <li ng-repeat="alert in myproduct.product.alerts">
+                                  <blockquote>
+                                     <h4>{{alert.headline}}</h4>
+                                     <h5><pre>{{alert.alert}}</pre></h5>
+                                     <footer>{{alert.updatedAt | date:'MMM. dd, yyyy'}}</footer>
+                                  </blockquote>
+                                </li>
+                            </ul>
+						</ion-content>
+					</ion-view>
+			</ion-tab>
+
+			<ion-tab title="Reviews">
+					<ion-view>
+						<ion-content>
+                            <h4>User Reviews ({{myproduct.product.reviews.length}})</h4>
+                            <ul class="list-unstyled">
+                                <li ng-repeat="review in myproduct.product.reviews">
+                                  <blockquote>
+                                     <p>{{review.headline}} - {{review.rating}} Stars</p>
+                                     <p><h5>{{review.review}}</h5></p>
+                                     <footer>{{review.postedBy.firstname}} {{review.postedBy.lastname}}, {{review.updatedAt | date:'MMM. dd, yyyy'}}</footer>
+                                  </blockquote>
+                                </li>
+                            </ul>
+						</ion-content>
+					</ion-view>
+			</ion-tab>
+		</ion-tabs>
+
+</ion-view>

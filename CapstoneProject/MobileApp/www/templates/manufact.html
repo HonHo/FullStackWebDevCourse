@@ -1,0 +1,26 @@
+<ion-view view-title="Manufacturer">
+  <ion-header-bar class="bar-light bar-subheader">
+    <!-- <input type="search" placeholder="Search Product" ng-model="manufact.filterProduct">
+    <button ng-if="manufact.filterProduct.length"
+            class="button button-icon ion-android-close input-button"
+            ng-click="manufact.clearSearch()">
+    </button> -->
+    <div class="item-input-wrapper">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input class="search" id="search" type="search" ng-model="manufact.filterProduct" placeholder="Search Product">
+        <i class="icon ion-close" ng-if="manufact.filterProduct.length" ng-click="manufact.clearSearch()"></i>  
+    </div>
+  </ion-header-bar>
+
+  <ion-content class="padding-vertical">
+    <ion-list>
+      <ion-item ng-repeat="product in manufact.products | filter:manufact.findProduct(manufact.filterProduct)" href="#/app/manufacts/{{product.producedBy._id}}/products/{{product._id}}" class="item-thumbnail-left">
+        <img ng-src="{{manufact.baseURL+product.image}}">
+        <h3>{{product.name}}</h3>
+        <h4>{{product.slogan}}</h4>
+        <ion-option-button class="button-assertive icon ion-plus-circled" ng-click="manufact.addToMyProducts(0, product._id)">
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
